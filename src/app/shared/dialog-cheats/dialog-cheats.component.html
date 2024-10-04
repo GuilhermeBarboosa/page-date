@@ -6,46 +6,82 @@
       required />
   </form>
 
+  @if (!cheat) {
   <div>
     <button-primary [value]="'Enviar'" (click)="onSubmit()"></button-primary>
   </div>
   }
 
-  @if (cheat) {
-  @switch (cheat) {
-  @case ('stitch'){
-  <div>
-    <div class="flex justify-center items-center">
-      <img src="assets/stitch.png" alt="">
+  }
+  <div class="p-2">
+
+    @if (cheat) {
+    @switch (cheat) {
+    @case ('stitch'){
+    <div>
+      <div class="flex justify-center items-center">
+        <img src="assets/stitch.png" alt="">
+      </div>
     </div>
-  </div>
-  }
+    }
 
-  @case ('conteudo' || 'conteúdo' || 'que conteudo' || 'que conteúdo'){
-  <div>
-    <div class="flex justify-center items-center">
-      <p>Que conteúdo você é!! 🤌🏼🤌🏼</p>
+    @case ('conteudo' || 'conteúdo' || 'que conteudo' || 'que conteúdo'){
+    <div>
+      <div class="flex justify-center items-center">
+        <p>Que conteúdo você é!! 🤌🏼🤌🏼</p>
+      </div>
     </div>
-  </div>
-  }
+    }
 
 
-  @case ('forca' || 'força'){
-  <div>
-    <div class="flex justify-center items-center">
-      <p>Quero deixar aqui que admiro muito sua força! Admiro a mulher que você é! Quero um dia mostrar ao meu filho a
-        mulher incrível que tenho ao meu lado! Sou totalmente apaixonado por você, pelo seu sorriso, pela sua coragem e
-        força!</p>
+    @case ('forca' || 'força'){
+    <div>
+      <div class="flex justify-center items-center">
+        <p>Quero deixar aqui que admiro muito sua força!
+
+          <span class="block">
+            Admiro a mulher que você é!
+          </span>
+
+          <span class="block">
+            Quero um dia mostrar ao meu filho a
+            mulher incrível que tenho ao meu lado!
+          </span>
+
+          <span class="block">
+            Sou totalmente apaixonado por você, pelo seu sorriso, pela sua coragem
+            e
+            força!
+          </span>
+
+        </p>
+      </div>
     </div>
-  </div>
-  }
+    }
 
-  @default {
-  <div class="flex justify-center items-center">
-    <small class="text-center text-red">Cheat inválido</small>
-  </div>
-  }
+    @case ('juntos' || 'juntos para sempre'){
+    <div>
+      <div class="flex justify-center items-center">
+        <img src="assets/juntos.jpeg" alt="">
+      </div>
+    </div>
 
-  }
-  }
+    <div class="flex justify-center items-center py-2 ">
+      <p>Essa foto, pra mim, simboliza tudo que passamos e o quanto você foi forte em superar tudo! Quero deixar sempre
+        aqui o quanto você significa pra mim. Criamos uma conexão enorme e um carinho imenso um com o outro. Passamos
+        por esta situação e iremos passar por outras. Sempre estaremos juntos, independentemente dos motivos que vierem!
+        Sempre de mãos dadas.</p>
+    </div>
+    }
+
+
+    @default {
+    <div class="flex justify-center items-center">
+      <small class="text-center text-red">Cheat inválido</small>
+    </div>
+    }
+
+    }
+    }
+  </div>
 </div>
