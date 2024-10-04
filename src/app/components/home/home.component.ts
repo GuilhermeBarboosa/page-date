@@ -13,6 +13,7 @@ import { DialogCheatsComponent } from '../../shared/dialog-cheats/dialog-cheats.
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { HeaderComponent } from '../../shared/header/header.component';
+import { NotifierService } from '../../services/notifier.service';
 
 @Component({
   selector: 'app-home',
@@ -31,13 +32,18 @@ import { HeaderComponent } from '../../shared/header/header.component';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialog: MatDialog,
+    private toast: NotifierService
+  ) {}
 
   currentFormIndex: number = 1;
   formulario!: FormGroup;
   formattedDate: string = '';
   formattedTime: string = '';
   currentFontSize = 30;
+  showMessage: boolean = false;
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -63,24 +69,53 @@ export class HomeComponent {
   submitForm() {
     const { local, data, argumento, observacao } = this.formulario.value;
 
+    // Formatar a data e a hora
     this.formatDateTime(data);
+
+    // Mensagem formatada
+    let messageWhatsapp = `Olá, gostaria de agendar no dia ${this.formattedDate} às ${this.formattedTime} um encontro no local ${local}.`;
+
+    if (argumento) {
+      messageWhatsapp += ` Com o seguinte argumento: ${argumento}.`;
+    }
+
+    if (observacao) {
+      messageWhatsapp += ` Observação: ${observacao}.`;
+    }
+
+    // Codificar a mensagem para ser compatível com URL
+    const encodedMessage = encodeURIComponent(messageWhatsapp);
+
+    // Número de WhatsApp (com código do país +55 para Brasil)
+    const whatsappNumber = '5534984039344';
+
+    // Criar o link do WhatsApp com a mensagem
+    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Redirecionar para o link (abrir WhatsApp)
+    window.open(whatsappLink, '_blank');
   }
 
   openDialog() {
-    console.log('teste');
+    this.toast.showInfo('Você descobriu um segredo!');
     let dialogRef = this.dialog.open(DialogComponent, {
       width: 'auto',
     });
   }
 
   openDialogCheat() {
-    console.log('teste');
+    this.toast.showInfo('Aqui possui vários segredos!');
     let dialogRef = this.dialog.open(DialogCheatsComponent, {
       width: 'auto',
     });
   }
 
   changeSize(event: Event, icon: HTMLElement) {
+    if (this.currentFontSize == 100) {
+      this.toast.showInfo('Você descobriu um segredo!');
+      this.showMessage = true;
+    }
+
     if (this.currentFontSize < 100) {
       icon.classList.add('pulse');
       setTimeout(() => {

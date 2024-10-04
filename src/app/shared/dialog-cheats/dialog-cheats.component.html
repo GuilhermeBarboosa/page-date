@@ -1,11 +1,33 @@
 <div class="p-2 m-5 mb-0">
 
-  <div class=" w-full mb-0 center justify-center items-center text-center">
-    <input class="default-input w-full p-2.5 " type="text" id="cheat" aria-label="cheat" required />
-  </div>
+  @if(formulario){
+  <form [formGroup]="formulario" class=" w-full mb-0 center justify-center items-center text-center">
+    <input class="default-input w-full p-2.5 " formControlName="cheat" type="text" id="cheat" aria-label="cheat"
+      required />
+  </form>
 
   <div>
     <button-primary [value]="'Enviar'" (click)="onSubmit()"></button-primary>
   </div>
+  }
 
+  @if (cheat) {
+  @switch (cheat) {
+  @case ('stitch'){
+  <div>
+    <div class="flex justify-center items-center">
+      <img src="assets/stitch.png" alt="">
+    </div>
+  </div>
+  }
+
+
+  @default {
+  <div class="flex justify-center items-center">
+    <small class="text-center text-red">Cheat inválido</small>
+  </div>
+  }
+
+  }
+  }
 </div>

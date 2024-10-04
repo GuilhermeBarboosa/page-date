@@ -5,21 +5,21 @@
 
   <div class="content-page w-full justify-center ">
     <div class="text-center mt-2">
-      <p class="" (click)="openDialog()"> Teste</p>
+      <p class="font-semibold" (click)="openDialog()"> 12/06</p>
     </div>
 
-    <div class="m-20 text-center">
+    <div class="m-20 text-4xl font-bold text-center">
       <p class="">
         TESTE
-        <span class="block"> FORMULARIO</span>
+        <span class="block color-primary"> FORMULARIO</span>
       </p>
     </div>
 
-    <div class="m-10 shadow-xl ">
+    <div class="m-10  ">
       <div class="flex justify-end ">
         <small (click)="openDialogCheat()">text</small>
       </div>
-      <div class="bg-secundary p-2 rounded form">
+      <div class="bg-secundary shadow-xl p-2 rounded form">
 
         <form action="" [formGroup]="formulario" *ngIf="formulario">
           <div [ngClass]="{'block': currentFormIndex == 1, 'hidden': currentFormIndex != 1}" id="form-one">
@@ -49,8 +49,8 @@
             <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(3)"></i>
 
             <label class="block text-sm" for="argumento">Argumento</label>
-            <input formControlName="argumento" class="default-input w-full p-2.5" type="text" id="argumento"
-              aria-label="argumento" />
+            <textarea formControlName="argumento" class="default-input w-full p-2.5" id="argumento"
+              aria-label="argumento"></textarea>
 
             <div class="flex justify-end">
               <button-primary [value]="'Próximo'" (click)="nextForm(3)"></button-primary>
@@ -61,8 +61,9 @@
             <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(4)"></i>
 
             <label class="block text-sm " for="observacao">Observação</label>
-            <input maxlength="120" formControlName="observacao" class="default-input w-full p-2.5" type="text"
-              id="observacao" aria-label="observacao" />
+            <textarea formControlName="observacao" class="default-input w-full p-2.5" id="observacao"
+              aria-label="observacao"></textarea>
+
 
             <div class="flex justify-end">
               <button-primary [value]="'Enviar'" (click)="submitForm()"></button-primary>
@@ -74,21 +75,23 @@
       </div>
     </div>
 
-    <div class="flex justify-center items-center">
+    <div class="flex flex-col justify-center items-center">
       <!-- <i #myIcon class='bx bxs-heart' (click)="changeSize($event, myIcon)"></i> -->
       <i #myIcon class='bx bx-smile font-size-inicial' (click)="changeSize($event, myIcon)"></i>
+
+      <p *ngIf="this.showMessage">MENSAGEM</p>
     </div>
 
 
     <div class="flex flex-col justify-center items-center mt-10">
-      <p>Últimos registros:</p>
+      <p class="text-lg">Últimos registros:</p>
 
       <div class="w-full mt-0 m-5 pt-0 p-5">
         <ul class="m-5">
-          <li>Casa</li>
-          <li>Casa</li>
-          <li>Casa</li>
-          <li>Casa</li>
+          <li>Nenhum registro</li>
+          <li>Nenhum registro</li>
+          <li>Nenhum registro</li>
+          <li>Nenhum registro</li>
         </ul>
       </div>
     </div>
