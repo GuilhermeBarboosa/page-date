@@ -26,6 +26,7 @@ export class DialogCheatsComponent {
   }
 
   onSubmit() {
-    this.cheat = this.formulario.value.cheat;
+    this.cheat = this.formulario.value.cheat.toLowerCase();
+    this.cheat = this.cheat.replace(/\s{2,}/g, ' ').trim();
   }
 }
