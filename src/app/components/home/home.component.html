@@ -82,6 +82,23 @@
 
 
             <div class="flex justify-end">
+              <button-primary [value]="'Próximo'" (click)="nextForm(4)"></button-primary>
+            </div>
+          </div>
+
+          <div [ngClass]="{'block': currentFormIndex == 5, 'hidden': currentFormIndex != 5}" id="form-five">
+            <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(5)"></i>
+
+            <label class="block text-sm " for="observacao">Whatsapp</label>
+
+            <button #gui id="gui" class="button-numbers w-full border-gray-300 border rounded my-2"
+              (click)="selectButton(gui)">Gui</button>
+
+            <button #le id="le" class="button-numbers w-full border-gray-300 border rounded my-2"
+              (click)="selectButton(le)">Le</button>
+
+
+            <div class="flex justify-end">
               <button-primary [value]="'Enviar'" (click)="submitForm()"></button-primary>
             </div>
           </div>

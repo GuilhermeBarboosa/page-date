@@ -11,7 +11,7 @@ export class EmojiComponent {
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   launchEmojis() {
-    const qtdEmoji = Math.random() * 50;
+    const qtdEmoji = Math.random() * 80;
     for (let i = 0; i < qtdEmoji; i++) {
       this.createEmoji();
     }
@@ -32,7 +32,7 @@ export class EmojiComponent {
     const randomXPosition = Math.random() * 100;
     this.renderer.setStyle(emoji, 'left', `${randomXPosition}vw`);
 
-    const randomYPosition = Math.random() * 20;
+    const randomYPosition = Math.random() * -100;
     this.renderer.setStyle(emoji, 'bottom', `${randomYPosition}vh`);
 
     setTimeout(() => {

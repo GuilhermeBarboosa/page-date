@@ -6,3 +6,10 @@ p {
   color: red;
   font-weight: bold;
 }
+
+.text-container {
+  max-height: 200px; /* Define a altura máxima */
+  overflow-y: auto; /* Permite rolar o conteúdo se exceder a altura máxima */
+  padding: 10px;
+  text-align: justify;
+}

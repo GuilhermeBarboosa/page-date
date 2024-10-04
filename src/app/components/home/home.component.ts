@@ -50,6 +50,7 @@ export class HomeComponent {
   formattedTime: string = '';
   currentFontSize = 30;
   showMessage: boolean = false;
+  numeroTelefone = '';
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
@@ -74,7 +75,8 @@ export class HomeComponent {
   }
 
   submitForm() {
-    const { local, data, hora, argumento, observacao } = this.formulario.value;
+    const { local, data, hora, numero, argumento, observacao } =
+      this.formulario.value;
 
     this.formatDateTime(data);
 
@@ -83,7 +85,14 @@ export class HomeComponent {
       return;
     }
 
-    let messageWhatsapp = `Olá, gostaria de agendar no dia *${this.formattedDate}* às *${hora}* um encontro no local *${local}*.`;
+    if (!this.numeroTelefone || this.numeroTelefone == '') {
+      this.toast.showError(
+        'Selecione um número de telefone para enviar a mensagem!'
+      );
+      return;
+    }
+
+    let messageWhatsapp = `Olá, meu amor! Gostaria de agendar no dia *${this.formattedDate}* às *${hora}* um encontro no local *${local}*.`;
 
     if (argumento) {
       messageWhatsapp += ` Com o seguinte argumento: *${argumento}*.`;
@@ -95,9 +104,7 @@ export class HomeComponent {
 
     const encodedMessage = encodeURIComponent(messageWhatsapp);
 
-    const whatsappNumber = '5534984039344';
-
-    const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/${this.numeroTelefone}?text=${encodedMessage}`;
 
     window.open(whatsappLink);
   }
@@ -116,13 +123,16 @@ export class HomeComponent {
     this.emojiComponent.launchEmojis();
 
     this.dialog.open(DialogCheatsComponent, {
-      width: 'auto',
+      width: '300px',
     });
   }
 
   changeSize(icon: HTMLElement) {
     if (this.currentFontSize >= 60) {
-      this.toast.showInfo('Você descobriu um segredo!');
+      if (!this.showMessage) {
+        this.toast.showInfo('Você descobriu um segredo!');
+      }
+
       this.emojiComponent.launchEmojis();
 
       this.showMessage = true;
@@ -143,5 +153,23 @@ export class HomeComponent {
 
     const [year, month, day] = date.split('-');
     this.formattedDate = `${day}/${month}/${year}`;
+  }
+
+  selectButton(div: any) {
+    let buttons = document.querySelectorAll('.button-numbers');
+
+    buttons.forEach((button: any) => {
+      button.classList.remove('button-select');
+      button.style.color = 'black';
+    });
+
+    div.classList.add('button-select');
+    div.style.color = 'white';
+
+    if (div.id == 'gui') {
+      this.numeroTelefone = '5534984039344';
+    } else if (div.id == 'le') {
+      this.numeroTelefone = '5534999235184';
+    }
   }
 }
