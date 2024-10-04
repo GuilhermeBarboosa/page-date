@@ -24,9 +24,14 @@
         <form action="" [formGroup]="formulario" *ngIf="formulario">
           <div [ngClass]="{'block': currentFormIndex == 1, 'hidden': currentFormIndex != 1}" id="form-one">
 
-            <label class="block text-sm " for="local">Local</label>
+            <label class="block text-sm " for="local">Local <span class="text-red-400">*</span></label>
             <input maxlength="120" formControlName="local" class="default-input w-full p-2.5" type="text" id="local"
-              aria-label="local" required />
+              aria-label="local" />
+            <div id="local-message-error" class="mensagem__erro"
+              *ngIf="formulario.get('local')?.errors?.['required'] && formulario.get('local')?.touched">
+              Local é obrigatório
+            </div>
+
 
             <div class="flex justify-end">
               <button-primary [value]="'Próximo'" (click)="nextForm(1)"></button-primary>
@@ -36,10 +41,21 @@
           <div [ngClass]="{'block': currentFormIndex == 2, 'hidden': currentFormIndex != 2}" id="form-two">
             <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(2)"></i>
 
-            <label class="block text-sm" for="data">Data</label>
-            <input formControlName="data" class="default-input w-full p-2.5" type="datetime-local" id="data"
-              aria-label="data" required />
+            <label class="block text-sm" for="data">Data <span class="text-red-400">*</span></label>
+            <input formControlName="data" class="default-input w-full p-2.5" type="date" id="data" aria-label="data" />
 
+            <div id="data-message-error" class="mensagem__erro"
+              *ngIf="formulario.get('data')?.errors?.['required'] && formulario.get('data')?.touched">
+              Data é obrigatório
+            </div>
+
+
+            <label class="block text-sm" for="hora">Hora <span class="text-red-400">*</span></label>
+            <input formControlName="hora" class="default-input w-full p-2.5" type="time" id="hora" aria-label="hora" />
+            <div id="hora-message-error" class="mensagem__erro"
+              *ngIf="formulario.get('hora')?.errors?.['required'] && formulario.get('hora')?.touched">
+              Hora é obrigatório
+            </div>
             <div class="flex justify-end">
               <button-primary [value]="'Próximo'" (click)="nextForm(2)"></button-primary>
             </div>

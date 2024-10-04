@@ -14,6 +14,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { FooterComponent } from '../../shared/footer/footer.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NotifierService } from '../../services/notifier.service';
+import { UtilsService } from '../../services/utils.service';
 
 @Component({
   selector: 'app-home',
@@ -35,22 +36,24 @@ export class HomeComponent {
   constructor(
     private formBuilder: FormBuilder,
     public dialog: MatDialog,
-    private toast: NotifierService
+    private toast: NotifierService,
+    private utils: UtilsService
   ) {}
 
   currentFormIndex: number = 1;
   formulario!: FormGroup;
   formattedDate: string = '';
   formattedTime: string = '';
-  currentFontSize = 30;
+  currentFontSize = 97;
   showMessage: boolean = false;
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
-      local: ['sdasda', [Validators.required, Validators.minLength(3)]],
+      local: ['', [Validators.required, Validators.minLength(3)]],
       data: ['', [Validators.required]],
-      argumento: ['dasd', [Validators.required]],
-      observacao: ['sadsada', [Validators.required]],
+      hora: ['', [Validators.required]],
+      argumento: [''],
+      observacao: [''],
     });
   }
 
@@ -67,33 +70,32 @@ export class HomeComponent {
   }
 
   submitForm() {
-    const { local, data, argumento, observacao } = this.formulario.value;
+    const { local, data, hora, argumento, observacao } = this.formulario.value;
 
-    // Formatar a data e a hora
     this.formatDateTime(data);
 
-    // Mensagem formatada
-    let messageWhatsapp = `Olá, gostaria de agendar no dia ${this.formattedDate} às ${this.formattedTime} um encontro no local ${local}.`;
+    if (this.formulario.invalid) {
+      this.utils.showInvalidFields(this.formulario);
+      return;
+    }
+
+    let messageWhatsapp = `Olá, gostaria de agendar no dia *${this.formattedDate}* às *${hora}* um encontro no local *${local}*.`;
 
     if (argumento) {
-      messageWhatsapp += ` Com o seguinte argumento: ${argumento}.`;
+      messageWhatsapp += ` Com o seguinte argumento: *${argumento}*.`;
     }
 
     if (observacao) {
-      messageWhatsapp += ` Observação: ${observacao}.`;
+      messageWhatsapp += ` Observação: *${observacao}*.`;
     }
 
-    // Codificar a mensagem para ser compatível com URL
     const encodedMessage = encodeURIComponent(messageWhatsapp);
 
-    // Número de WhatsApp (com código do país +55 para Brasil)
     const whatsappNumber = '5534984039344';
 
-    // Criar o link do WhatsApp com a mensagem
     const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // Redirecionar para o link (abrir WhatsApp)
-    window.open(whatsappLink, '_blank');
+    window.open(whatsappLink);
   }
 
   openDialog() {
@@ -111,7 +113,7 @@ export class HomeComponent {
   }
 
   changeSize(event: Event, icon: HTMLElement) {
-    if (this.currentFontSize == 100) {
+    if (this.currentFontSize >= 100) {
       this.toast.showInfo('Você descobriu um segredo!');
       this.showMessage = true;
     }
@@ -131,10 +133,5 @@ export class HomeComponent {
 
     const [year, month, day] = date.split('-');
     this.formattedDate = `${day}/${month}/${year}`;
-
-    this.formattedTime = time;
-
-    console.log('Data formatada:', this.formattedDate);
-    console.log('Hora formatada:', this.formattedTime);
   }
 }
