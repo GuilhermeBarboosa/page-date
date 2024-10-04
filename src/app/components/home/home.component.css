@@ -1,0 +1,40 @@
+.body {
+  background-color: rgb(255, 255, 255);
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+}
+
+.content-page {
+  width: 100%;
+  height: 100%;
+}
+
+.header {
+  background-color: #4caf50;
+  position: relative;
+  text-align: center;
+  padding: 50px 0;
+  color: white;
+}
+
+.font-size-inicial {
+  font-size: 30px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 0.4s ease-in-out;
+}

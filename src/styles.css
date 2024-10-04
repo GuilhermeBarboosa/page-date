@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-secundary {
+  background-color: #fcfcfc;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.default-input {
+  background-color: #ffffff;
+  border: 1px solid #c9c9c9 !important;
+  color: #202020;
+  font-size: medium;
+  border-radius: 5px;
+  display: block;
+  margin: 0px 0px 0px 0px;
+}
+
+.default-input:focus {
+  border: 1px solid #c9fffa;
+}
+
+.default-input-disabled {
+  background-color: #f0f0f0;
+  border: 0px solid #e7e7e7 !important;
+  color: #202020;
+  font-size: medium;
+  border-radius: 5px;
+  display: block;
+  margin: 0px 0px 0px 0px;
+}

@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+
+<div class="body">
+
+  <div class="content-page w-full justify-center ">
+    <div class="text-center mt-2">
+      <p class="" (click)="openDialog()"> Teste</p>
+    </div>
+
+    <div class="m-20 text-center">
+      <p class="">
+        TESTE
+        <span class="block"> FORMULARIO</span>
+      </p>
+    </div>
+
+    <div class="m-10 shadow-xl">
+      <div class="flex justify-end ">
+        <small (click)="openDialogCheat()">text</small>
+      </div>
+      <div class="bg-secundary p-2 rounded">
+
+        <form action="" [formGroup]="formulario" *ngIf="formulario">
+          <div [ngClass]="{'block': currentFormIndex == 1, 'hidden': currentFormIndex != 1}" id="form-one">
+
+            <label class="block text-sm " for="local">Local</label>
+            <input maxlength="120" formControlName="local" class="default-input w-full p-2.5" type="text" id="local"
+              aria-label="local" required />
+
+            <div class="flex justify-end">
+              <button-primary [value]="'Próximo'" (click)="nextForm(1)"></button-primary>
+            </div>
+          </div>
+
+          <div [ngClass]="{'block': currentFormIndex == 2, 'hidden': currentFormIndex != 2}" id="form-two">
+            <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(2)"></i>
+
+            <label class="block text-sm" for="data">Data</label>
+            <input formControlName="data" class="default-input w-full p-2.5" type="datetime-local" id="data"
+              aria-label="data" required />
+
+            <div class="flex justify-end">
+              <button-primary [value]="'Próximo'" (click)="nextForm(2)"></button-primary>
+            </div>
+          </div>
+
+          <div [ngClass]="{'block': currentFormIndex == 3, 'hidden': currentFormIndex != 3}" id="form-three">
+            <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(3)"></i>
+
+            <label class="block text-sm" for="argumento">Argumento</label>
+            <input formControlName="argumento" class="default-input w-full p-2.5" type="text" id="argumento"
+              aria-label="argumento" />
+
+            <div class="flex justify-end">
+              <button-primary [value]="'Próximo'" (click)="nextForm(3)"></button-primary>
+            </div>
+          </div>
+
+          <div [ngClass]="{'block': currentFormIndex == 4, 'hidden': currentFormIndex != 4}" id="form-four">
+            <i class='bx bx-arrow-back text-black text-lg' (click)="returnForm(4)"></i>
+
+            <label class="block text-sm " for="observacao">Observação</label>
+            <input maxlength="120" formControlName="observacao" class="default-input w-full p-2.5" type="text"
+              id="observacao" aria-label="observacao" />
+
+            <div class="flex justify-end">
+              <button-primary [value]="'Enviar'" (click)="submitForm()"></button-primary>
+            </div>
+          </div>
+        </form>
+
+        <small class="flex w-full justify-center text-center ">LEGENDA</small>
+      </div>
+    </div>
+
+    <div class="flex justify-center items-center">
+      <!-- <i #myIcon class='bx bxs-heart' (click)="changeSize($event, myIcon)"></i> -->
+      <i #myIcon class='bx bx-smile font-size-inicial' (click)="changeSize($event, myIcon)"></i>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
