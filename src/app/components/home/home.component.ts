@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -15,6 +15,7 @@ import { FooterComponent } from '../../shared/footer/footer.component';
 import { HeaderComponent } from '../../shared/header/header.component';
 import { NotifierService } from '../../services/notifier.service';
 import { UtilsService } from '../../services/utils.service';
+import { EmojiComponent } from '../../shared/emoji/emoji.component';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ import { UtilsService } from '../../services/utils.service';
     DialogComponent,
     DialogCheatsComponent,
     FooterComponent,
+    EmojiComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
@@ -40,11 +42,13 @@ export class HomeComponent {
     private utils: UtilsService
   ) {}
 
+  @ViewChild(EmojiComponent) emojiComponent!: EmojiComponent;
+
   currentFormIndex: number = 1;
   formulario!: FormGroup;
   formattedDate: string = '';
   formattedTime: string = '';
-  currentFontSize = 97;
+  currentFontSize = 30;
   showMessage: boolean = false;
 
   ngOnInit() {
@@ -100,29 +104,35 @@ export class HomeComponent {
 
   openDialog() {
     this.toast.showInfo('Você descobriu um segredo!');
-    let dialogRef = this.dialog.open(DialogComponent, {
+    this.emojiComponent.launchEmojis();
+
+    this.dialog.open(DialogComponent, {
       width: 'auto',
     });
   }
 
   openDialogCheat() {
     this.toast.showInfo('Aqui possui vários segredos!');
-    let dialogRef = this.dialog.open(DialogCheatsComponent, {
+    this.emojiComponent.launchEmojis();
+
+    this.dialog.open(DialogCheatsComponent, {
       width: 'auto',
     });
   }
 
-  changeSize(event: Event, icon: HTMLElement) {
-    if (this.currentFontSize >= 100) {
+  changeSize(icon: HTMLElement) {
+    if (this.currentFontSize >= 60) {
       this.toast.showInfo('Você descobriu um segredo!');
+      this.emojiComponent.launchEmojis();
+
       this.showMessage = true;
     }
 
-    if (this.currentFontSize < 100) {
+    if (this.currentFontSize < 60) {
       icon.classList.add('pulse');
       setTimeout(() => {
         icon.classList.remove('pulse');
-        this.currentFontSize += 2;
+        this.currentFontSize += 1;
         icon.style.fontSize = `${this.currentFontSize}px`;
       }, 500);
     }
