@@ -15,11 +15,11 @@
       </p>
     </div>
 
-    <div class="m-10 shadow-xl">
+    <div class="m-10 shadow-xl ">
       <div class="flex justify-end ">
         <small (click)="openDialogCheat()">text</small>
       </div>
-      <div class="bg-secundary p-2 rounded">
+      <div class="bg-secundary p-2 rounded form">
 
         <form action="" [formGroup]="formulario" *ngIf="formulario">
           <div [ngClass]="{'block': currentFormIndex == 1, 'hidden': currentFormIndex != 1}" id="form-one">
@@ -78,7 +78,23 @@
       <!-- <i #myIcon class='bx bxs-heart' (click)="changeSize($event, myIcon)"></i> -->
       <i #myIcon class='bx bx-smile font-size-inicial' (click)="changeSize($event, myIcon)"></i>
     </div>
+
+
+    <div class="flex flex-col justify-center items-center mt-10">
+      <p>Últimos registros:</p>
+
+      <div class="w-full mt-0 m-5 pt-0 p-5">
+        <ul class="m-5">
+          <li>Casa</li>
+          <li>Casa</li>
+          <li>Casa</li>
+          <li>Casa</li>
+        </ul>
+      </div>
+    </div>
   </div>
+
+
 
 </div>
 

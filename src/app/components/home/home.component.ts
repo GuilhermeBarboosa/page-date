@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { ButtonPrimaryComponent } from '../../shared/button-primary/button-primary.component';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from '../../shared/header/header.component';
+import { Component } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { provideToastr, ToastrModule } from 'ngx-toastr';
-import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
-import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { ButtonPrimaryComponent } from '../../shared/button-primary/button-primary.component';
 import { DialogCheatsComponent } from '../../shared/dialog-cheats/dialog-cheats.component';
-import { FooterComponent } from "../../shared/footer/footer.component";
+import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { FooterComponent } from '../../shared/footer/footer.component';
+import { HeaderComponent } from '../../shared/header/header.component';
 
 @Component({
   selector: 'app-home',
@@ -27,8 +25,8 @@ import { FooterComponent } from "../../shared/footer/footer.component";
     MatDialogModule,
     DialogComponent,
     DialogCheatsComponent,
-    FooterComponent
-],
+    FooterComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -96,10 +94,8 @@ export class HomeComponent {
   formatDateTime(datetime: string): void {
     const [date, time] = datetime.split('T');
 
-
     const [year, month, day] = date.split('-');
     this.formattedDate = `${day}/${month}/${year}`;
-
 
     this.formattedTime = time;
 
