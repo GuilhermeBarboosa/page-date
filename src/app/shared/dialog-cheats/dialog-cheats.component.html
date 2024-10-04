@@ -16,8 +16,8 @@
   <div class="p-2">
 
     @if (cheat) {
-    @switch (cheat) {
-    @case ('stitch'){
+
+    @if (cheat == 'stitch'){
     <div>
       <div class="flex justify-center items-center">
         <img src="assets/stitch.png" alt="">
@@ -29,7 +29,7 @@
     </div>
     }
 
-    @case ('conteudo' || 'conteúdo' || 'que conteudo' || 'que conteúdo'){
+    @if (cheat == 'que conteúdo' || cheat == 'conteúdo' || cheat == 'que conteudo' || cheat == 'que conteúdo'){
     <div>
       <div class="flex justify-center items-center text-center">
         <p>Que conteúdo você é!! 🤌🏼🤌🏼</p>
@@ -37,8 +37,7 @@
     </div>
     }
 
-
-    @case ('forca' || 'força'){
+    @if (cheat == 'força'|| cheat == 'forca'){
     <div>
       <div class="flex justify-center items-center">
         <p>Quero deixar aqui que admiro muito sua força!
@@ -63,7 +62,7 @@
     </div>
     }
 
-    @case ('juntos' || 'juntos para sempre'){
+    @if (cheat == 'juntos' || cheat == 'juntos para sempre'){
     <div>
       <div class="flex justify-center items-center">
         <img src="assets/juntos.jpeg" alt="">
@@ -79,14 +78,29 @@
     </div>
     }
 
-
-    @default {
-    <div class="flex justify-center items-center">
-      <small class="text-center text-red">Cheat inválido</small>
+    @if (cheat == '07/06' || cheat == '07/06/2024'){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>Você é minha mulher</p>
+      </div>
     </div>
     }
 
+    @if (cheat == '15/08' || cheat == '15/08/2024'){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>Você me deixa calmo. Me sinto nas nuvens com você; nunca imaginei que isso aconteceria.
+
+          <span class="block">
+            Irei fazer de tudo pra casarmos e sermos muito felizes. Irei lutar muito por isso.
+          </span>
+
+        </p>
+      </div>
+    </div>
     }
+
+
     }
   </div>
 </div>
