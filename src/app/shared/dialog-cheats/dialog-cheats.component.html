@@ -100,7 +100,127 @@
     </div>
     }
 
+    @if (cheat == '15/08' || cheat == '15/08/2024'){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>Você me deixa calmo. Me sinto nas nuvens com você; nunca imaginei que isso aconteceria.
 
+          <span class="block">
+            Irei fazer de tudo pra casarmos e sermos muito felizes. Irei lutar muito por isso.
+          </span>
+
+        </p>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'nossas fotos' || cheat == 'fotos'){
+    <div class="relative max-w-full overflow-hidden">
+      <!-- Imagem do carrossel -->
+      <div class="w-full h-64 md:h-96">
+        <img [src]="images[currentIndex].img" [alt]="images[currentIndex].description"
+          class="w-full h-full object-cover">
+      </div>
+
+      <!-- Botões de navegação -->
+      <button (click)="goToPrevious()"
+        class="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl bg-black bg-opacity-50 p-2 rounded-full">
+        &#10094;
+      </button>
+
+      <button (click)="goToNext()"
+        class="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl bg-black bg-opacity-50 p-2 rounded-full">
+        &#10095;
+      </button>
+    </div>
+
+    <!-- Indicadores -->
+    <div class="flex justify-center space-x-2 mt-2">
+      <span *ngFor="let image of images; let i = index"
+        [ngClass]="{'bg-blue-500': i === currentIndex, 'bg-gray-300': i !== currentIndex}"
+        class="w-3 h-3 rounded-full cursor-pointer" (click)="currentIndex = i">
+      </span>
+    </div>
+
+    <!-- Descrição abaixo da imagem -->
+    <div class="text-center mt-2">
+      <span class="text-lg font-medium">{{ images[currentIndex].description }}</span>
+    </div>
+
+
+    }
+    @if (cheat == 'ticket' || cheat == 'vale' || cheat == 'cupom' ){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>Parabéns! Caso você tenha conseguido achar este cupom <strong> escondido</strong>,
+          você terá 1 semana para que eu faça o que você quiser!</p>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'jantar'){
+    <div>
+      <div class="flex justify-center items-center">
+        <img src="assets/ticket.png" alt="">
+      </div>
+
+      <div class="flex justify-center items-center text-center">
+        <p>Parabéns! Caso você tenha conseguido esse segredo,
+          você terá direito a um jantar onde escolher!</p>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'jantar'){
+    <div>
+      <div class="flex justify-center items-center">
+        <img src="assets/ticket.png" alt="">
+      </div>
+
+      <div class="flex justify-center items-center text-center">
+        <p>Parabéns! Caso você tenha conseguido esse segredo,
+          você terá direito a um jantar onde escolher!</p>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'frase'){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>{{ phrase }}</p>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'luisa' || cheat == 'Luisa' || cheat == 'Luisa Sonza'){
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <iframe data-testid="embed-iframe" style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/2ip4hxYupn3CSsHjn4l2a8?utm_source=generator" width="100%"
+          height="352" frameBorder="0" allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+    </div>
+    }
+
+    @if (cheat == 'nosso dia') {
+    <div>
+      <div class="flex justify-center items-center text-center">
+        <p>💖 Feliz mais um mês ao seu lado!
+
+          A cada novo mês, meu amor por você cresce de um jeito que nem eu consigo explicar. Parece impossível, mas você
+          me faz sorrir mais, sonhar mais e acreditar que o amor de verdade existe — e está bem aqui, entre a gente.
+
+          Obrigado(a) por ser quem você é. Pela paciência, pelo carinho nos detalhes, pelos abraços demorados e pelos
+          olhares que dizem tudo sem precisar de palavras.
+
+          Já vivemos tantas coisas lindas, e ainda temos um mundo inteiro pra construir juntos. Que venham muitos outros
+          meses, anos, e uma vida inteira de amor.
+
+          Eu te amo, hoje mais do que ontem, e menos do que amanhã. ❤️</p>
+      </div>
+    </div>
+    }
     }
   </div>
 </div>
